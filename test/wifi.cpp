@@ -4,8 +4,6 @@
 
 #include <Arduino.h>
 #include <WiFi.h>
-#include "secrets.h"
-
 const char* ssid = "eduroam";
 const char* password = "Sala200521";
 
