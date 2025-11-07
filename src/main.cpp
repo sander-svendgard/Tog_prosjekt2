@@ -10,6 +10,8 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  Serial.print("choo choo, chug-a-chug-a-chug-a-chug choo choo");
+  delay(100);
 }
 
 // put function definitions here:
