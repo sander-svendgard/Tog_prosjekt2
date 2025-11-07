@@ -4,6 +4,8 @@
 
 #include <Arduino.h>
 #include <WiFi.h>
+const char* ssid     = WIFI_SSID;
+const char* password = WIFI_PASSWORD;
 
 void setup() {
   Serial.begin(115200);
