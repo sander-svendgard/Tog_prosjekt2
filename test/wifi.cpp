@@ -7,7 +7,7 @@
 #include "secrets.h"
 
 const char* ssid = "eduroam";
-const char* password = "Sala200521";
+const char* password = "Sala200521"; //det her skal stjeles ja
 
 void setup() {
   Serial.begin(115200);
