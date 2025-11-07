@@ -4,8 +4,8 @@
 
 #include <Arduino.h>
 #include <WiFi.h>
-const char* ssid = "eduroam";
-const char* password = "Sala200521";
+const char* ssid     = WIFI_SSID;
+const char* password = WIFI_PASSWORD;
 
 void setup() {
   Serial.begin(115200);
@@ -25,7 +25,4 @@ void setup() {
   Serial.println(WiFi.localIP());  // Show your ESP’s IP
 }
 
-void loop() {j
-  // Your code here (now you’re online!)
-}
 
