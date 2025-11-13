@@ -1,43 +1,79 @@
 #include <WiFi.h>
+#include <WebServer.h>
 
-const char* SSID = "NTNU-IOT";
-const char* PASS = "";
+// Replace with your network credentials
+const char* ssid = "NTNU-IOT";
+const char* password = "";
+
+WebServer server(80); // Web server on port 80
+
+const int ledPin = 4; // Onboard LED pin (GPIO2 for ESP32)
+bool ledState = false; // Track LED state
+
+// HTML content for the web page
+String HTMLPage() {
+  String html = "<!DOCTYPE html><html>";
+  html += "<head><title>ESP32 LED Control</title></head>";
+  html += "<body style='text-align: center; font-family: Arial;'>";
+
+  html += "<h1>ESP32 LED Control</h1>";
+  html += ledState ? "<p>LED is <strong>ON</strong></p>" : "<p>LED is <strong>OFF</strong></p>";
+  html += "<a href='/on' style='padding: 10px 20px; background-color: green; color: white; text-decoration: none;'>Turn ON</a>&nbsp;";
+  html += "<a href='/off' style='padding: 10px 20px; background-color: red; color: white; text-decoration: none;'>Turn OFF</a>";
+
+  html += "</body></html>";
+  return html;
+}
+
+// Handle the root path "/"
+void handleRoot() {
+  server.send(200, "text/html", HTMLPage());
+}
+
+// Handle LED ON request
+void handleLEDOn() {
+  ledState = true;
+  digitalWrite(ledPin, HIGH);
+  server.send(200, "text/html", HTMLPage());
+}
+
+// Handle LED OFF request
+void handleLEDOff() {
+  ledState = false;
+  digitalWrite(ledPin, LOW);
+  server.send(200, "text/html", HTMLPage());
+}
 
 void setup() {
   Serial.begin(115200);
-  delay(1000);
 
-  WiFi.mode(WIFI_STA);           // Station mode
-  WiFi.setAutoReconnect(true);   // Auto-reconnect on drops
-  WiFi.persistent(false);        // Don't write creds to flash unless you want to
+  // Initialize onboard LED pin as output
+  pinMode(ledPin, OUTPUT);
+  digitalWrite(ledPin, LOW); // Start with LED off
 
-  Serial.printf("Connecting to %s", SSID);
-  WiFi.begin(SSID, PASS);
-
-  // Optional: set static IP (uncomment and edit)
-  // IPAddress local(192,168,1,42), gateway(192,168,1,1), subnet(255,255,255,0), dns(1,1,1,1);
-  // WiFi.config(local, gateway, subnet, dns);
-
+  // Connect to Wi-Fi
+  WiFi.begin(ssid, password);
+  Serial.print("Connecting to Wi-Fi");
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    Serial.print('.');
+    Serial.print(".");
   }
-  Serial.println("\nConnected!");
-  Serial.print("IP: ");
+  Serial.println("\nConnected to Wi-Fi");
   Serial.println(WiFi.localIP());
+
+  // Define server routes
+  server.on("/", handleRoot);
+  server.on("/on", handleLEDOn);
+  server.on("/off", handleLEDOff);
+
+  // Start the server
+  server.begin();
+  Serial.println("Server started");
 }
 
 void loop() {
-  // Example: ensure we reconnect if AP went away for a while
-  static uint32_t t = 0;
-  if (millis() - t > 3000) {
-    t = millis();
-    wl_status_t s = WiFi.status();
-    if (s != WL_CONNECTED) {
-      Serial.printf("WiFi status %d; reconnecting...\n", s);
-      WiFi.reconnect();
-    }
-  }
+  server.handleClient(); // Handle client requests
 }
+
 
 
