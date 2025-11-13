@@ -19,6 +19,7 @@
 #include <Arduino.h>
 #include <DFRobot_BMI160.h>
 
+//Eksempelkode for å teste gyro og initialisere 
 
 Serial.Begin(9600);
 const int8_t i2c_addr = 0x69;
