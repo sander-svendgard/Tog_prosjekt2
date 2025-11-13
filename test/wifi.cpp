@@ -4,15 +4,10 @@
 
 #include <Arduino.h>
 #include <WiFi.h>
-<<<<<<< HEAD
 #include "secrets.h"
 
 const char* ssid = "eduroam";
 const char* password = "Sala200521"; //det her skal stjeles ja
-=======
-const char* ssid     = WIFI_SSID;
-const char* password = WIFI_PASSWORD;
->>>>>>> 32de8c4a7d1608a848cada597f899898a1f4451b
 
 void setup() {
   Serial.begin(115200);
