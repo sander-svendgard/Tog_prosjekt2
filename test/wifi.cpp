@@ -1,16 +1,15 @@
 #pragma once
-#define WIFI_SSID "eduroam" 
-#define WIFI_PASSWORD "Sala200521"
+#define WIFI_SSID "NTNU-IOT" 
+#define WIFI_PASSWORD ""
 
 #include <Arduino.h>
 #include <WiFi.h>
-#include "secrets.h"
 
-const char* ssid = "eduroam";
-const char* password = "Sala200521"; //det her skal stjeles ja
+const char* ssid = "NTNU-IOT";
+const char* password = ""; //det her skal stjeles ja
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   delay(1000);
 
   Serial.println("Connecting to WiFi...");
@@ -24,7 +23,7 @@ void setup() {
   Serial.println();
   Serial.println("WiFi connected!");
   Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());  // Show your ESP’s IP
+  Serial.println(WiFi.localIP());   
 }
 
 
