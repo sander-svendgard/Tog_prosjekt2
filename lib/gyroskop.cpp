@@ -21,10 +21,11 @@
 
 //Eksempelkode for å teste gyro og initialisere 
 
-Serial.Begin(9600);
+
 const int8_t i2c_addr = 0x69;
 void setup(){
-  Serial.begin(115200);
+
+  Serial.begin(9600);
   delay(100);
   
   //init the hardware bmin160  
