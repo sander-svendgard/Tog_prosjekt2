@@ -8,6 +8,10 @@
 const char* ssid = "NTNU-IOT";
 const char* password = ""; //det her skal stjeles ja
 
+const char* ssid     = WIFI_SSID;
+const char* password = WIFI_PASSWORD;
+32de8c4a7d1608a848cada597f899898a1f4451b
+
 void setup() {
   Serial.begin(9600);
   delay(1000);
