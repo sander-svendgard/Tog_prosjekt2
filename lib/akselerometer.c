@@ -16,12 +16,11 @@ void setup() {
 
 
 
-void databehandling{ 
+// void databehandling{ 
 
-}
 
-void main {
+
+//void main {
     char str[] = "Geeks";
     pritnf("The string is: %s\n", str);
-    return 0;
-}
+    return 0;}

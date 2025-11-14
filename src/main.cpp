@@ -45,10 +45,26 @@ void handleLEDOff() {
 }
 
 void setup() {
+<<<<<<< HEAD
   Serial.begin(115200);
   
   pinMode(ledPin, OUTPUT);
   digitalWrite(ledPin, LOW);
+=======
+<<<<<<< HEAD
+  Serial.begin(9600);
+
+  // Initialize onboard LED pin as output
+  pinMode(ledPin, OUTPUT);
+  digitalWrite(ledPin, LOW); // Start with LED off
+=======
+  Serial.begin(115200); // Øk til 115200
+
+  // Bytt til GPIO2 for innebygd LED på de fleste ESP32-kort
+  pinMode(2, OUTPUT); // eller test GPIO4 hvis det er riktig for ditt kort
+  digitalWrite(2, LOW); // Start med LED av
+>>>>>>> 70df3f74a8b9898b9ac5d76ae6e4ad5e97719615
+>>>>>>> e668864499f8b10b68ddaaee0c5dcea3c23e3f07
 
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
