@@ -1,5 +1,7 @@
 #include <WiFi.h>
 #include <WebServer.h>
+#include <Arduino.h>
+
 
 // Replace with your network credentials
 const char* ssid = "NTNU-IOT";
